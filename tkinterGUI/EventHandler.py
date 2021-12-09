@@ -4,10 +4,12 @@ class EventHandler:
         self.master = master
 
     def handle_run(self, event=False):
-        print(f"Run request with:\n   gdt_var = {self.master.gdt_var.get()}\
+        # DEBUG:
+        """print(f"Run request with:\n   gdt_var = {self.master.gdt_var.get()}\
                                 \n   gsts_var = {self.master.gsts_var.get()}\
                                 \n   rfrsh_var = {self.master.rfrsh_var.get()}\
                                 \n   spawnchance = {self.master.spawnchance_spin.get()}")
+        """
 
         splitted_tsgs = self.master.gsts_var.get().split("-")
         self.master.data["gridsize"] = splitted_tsgs[0]
@@ -24,12 +26,12 @@ class EventHandler:
         self.master.data["outline"] = self.master.outline_var.get()
 
         self.master.data["rainbow"] = self.master.rainbow_var.get()
-        
+
         self.master.delete_init()
         self.master.init_run()
 
-        self.lmx = self.master.xsize*self.master.data["tilesize"]
-        self.lmy = self.master.ysize*self.master.data["tilesize"]
+        self.lmx = self.master.xsize * self.master.data["tilesize"]
+        self.lmy = self.master.ysize * self.master.data["tilesize"]
         print("limits (in x y)", self.lmx, self.lmy)
 
         self.master.run()
@@ -55,6 +57,6 @@ class EventHandler:
         if self.master.m1pressed:
             x, y = event.x, event.y
             if x < self.lmx and x > 0 and y < self.lmy and y > 0:
-                #print("MOTION coords (x y)", x, y)
+                # print("MOTION coords (x y)", x, y)
                 self.master.to_draw.append((x, y))
                 self.master.draw()
