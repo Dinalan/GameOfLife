@@ -1,6 +1,7 @@
 from bg.Cell import Cell
 from random import randint
 
+
 class Grid:
 
     def __init__(self, ncolumns: int, nrows: int, spawnchance=50) -> None:
@@ -10,7 +11,7 @@ class Grid:
             for column in range(ncolumns):
                 self.grid[-1].append(Cell((row, column)))
                 x = randint(-100, 0)
-                if x > spawnchance*-1:
+                if x > spawnchance * -1:
                     self.grid[-1][-1].alive = 1
 
     @staticmethod
@@ -31,26 +32,30 @@ class Grid:
     def getgrid(self):
         return self.getlivings(self.grid)
 
+
 class BetterGrid:
     def __init__(self, format, prespawn_alivecells=False, preloaded_grid=False):
         if preloaded_grid:
             self.grid = preloaded_grid
         else:
-            self.grid = []
-            for row in range(format[0]):
-                self.grid.append([])
-                for cell in range(format[1]):
-                    if type(prespawn_alivecells) == int:
-                        x = randint(-100, 0)
-                        if x > prespawn_alivecells*-1:
-                            x = 1
-                        else:
-                            x = 0
-                    else:
-                        x = 0
-                    self.grid[-1].append(x)
+            self.load(format, prespawn_alivecells)
         print("grid", len(self.grid), len(self.grid[-1]))
         print(self)
+
+    def load(self, format, prespawn):
+        self.grid = []
+        for row in range(format[0]):
+            self.grid.append([])
+            for cell in range(format[1]):
+                if type(prespawn) == int:
+                    x = randint(-100, 0)
+                    if x > prespawn * -1:
+                        x = 1
+                    else:
+                        x = 0
+                else:
+                    x = 0
+                self.grid[-1].append(x)
 
     def update(self):
         nextgrid = []
@@ -68,7 +73,7 @@ class BetterGrid:
         x = [-1, -1, -1, 0, 0, 1, 1, 1]
         for i in range(8):
             try:
-                n += self.grid[pos[0]+x[i]][pos[1]+y[i]]
+                n += self.grid[pos[0] + x[i]][pos[1] + y[i]]
             except:
                 n += 0
 
