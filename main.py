@@ -1,6 +1,5 @@
 import tkinter
 
-
 WIN = tkinter.Tk()
 WIN.title("Choose the version")
 launch_GUI_options = ["2.x (pygame)", "1.x (tkinter)"]
@@ -10,6 +9,7 @@ user_launch_GUI_choice.set(launch_GUI_options[0])
 user_launch_GUI_menu = tkinter.OptionMenu(WIN, user_launch_GUI_choice, *launch_GUI_options)
 
 user_launch_exp = tkinter.Label(WIN, text="Choose the version:      ")
+
 
 def go(event=False):
     choice = user_launch_GUI_choice.get()
@@ -21,7 +21,6 @@ def go(event=False):
         from tkinterGUI.GUI import GUI
         gui = GUI()
         gui.start()
-
 
 
 user_launch_GUI_button = tkinter.Button(WIN, text="GO!", command=go)
