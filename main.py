@@ -31,10 +31,8 @@ def prompt_info(event=False):
 
 
 user_launch_GUI_button = tkinter.Button(WIN, text="GO!", command=go)
-info_button = tkinter.Button(WIN, text=" ? ", command=prompt_info)
 
 user_launch_exp.grid(row=1, column=0)
-info_button.grid(row=1, column=3)
 user_launch_GUI_menu.grid(row=1, column=1)
 user_launch_GUI_button.grid(row=1, column=2)
 
